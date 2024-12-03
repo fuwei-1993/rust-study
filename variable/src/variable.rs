@@ -1,4 +1,4 @@
-fn main() {
+pub(crate) fn main() {
     // 代表可以修改的变量
     let mut v1: i32 = 1;
     print!("The value of v1 is: {}", v1);

@@ -6,5 +6,8 @@ edition = "2024"
 [dependencies]
 
 [[bin]]
-name = "variable"
-path = "src/variable.rs"
+# name = "variable"
+# path = "src/variable.rs"
+name = "num"
+path = "src/num.rs"
+
