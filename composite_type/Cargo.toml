@@ -6,5 +6,8 @@ edition = "2024"
 [dependencies]
 
 [[bin]]
-name = "tuple"
-path = "src/tuple.rs"
+# name = "tuple"
+# path = "src/tuple.rs"
+name = "struct"
+path = "src/struct.rs"
+
