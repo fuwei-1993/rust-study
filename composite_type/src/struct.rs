@@ -57,6 +57,24 @@ fn main() {
     // println!("User 1: {:?}", user);
 
     println!("User 3: {:?}", user3);
+
+    // 结构体的内存排列
+    #[derive(Debug)]
+    struct File {
+        name: String,
+        data: Vec<u8>,
+    }
+
+    let f1 = File {
+        name: String::from("f1.txt"),
+        data: Vec::new(),
+    };
+
+    let f1_name = &f1.name;
+    let f1_length = &f1.data.len();
+
+    println!("f1 ${:?}", f1);
+    println!("fname {}, f1_length {}", f1_name, f1_length);
 }
 
 fn build_user(email: String, username: String) -> User {
