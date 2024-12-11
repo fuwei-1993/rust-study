@@ -8,6 +8,7 @@ edition = "2024"
 [[bin]]
 # name = "tuple"
 # path = "src/tuple.rs"
-name = "struct"
-path = "src/struct.rs"
-
+# name = "struct"
+# path = "src/struct.rs"
+name = "enum"
+path = "src/enum.rs" 
