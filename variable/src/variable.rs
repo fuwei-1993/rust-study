@@ -1,4 +1,4 @@
-pub(crate) fn main() {
+fn main() {
     // 代表可以修改的变量
     let mut v1: i32 = 1;
     print!("The value of v1 is: {}", v1);
@@ -49,7 +49,12 @@ pub(crate) fn main() {
     }
 
     // 字符
-    let x: &str = "😊"; //+
+    // 此为字符串切片
+    // let x: &str = "😊"; //+
+
+    // 这才是字符, 一个字符固定占用4个字节，是 Unicode 类型
+    let x: char = '😊';
+
     println!("The length of the string is: {}", x);
 
     // 函数表达式

@@ -70,6 +70,41 @@ fn main() {
 
     // let hello = String::from("中国人");
     // 每个汉字占用3个字节， 所以取 &s[0..2] 没有意义
+
+    // 操作字符串
+    // 追加 (Push)
+    let mut s = String::from("hello ");
+    s.push_str("rust");
+    println!("{}", s);
+    s.push('!');
+    println!("{}", s);
+
+    // 插入 (Insert)
+    let mut s = String::from("hello rust!");
+    s.insert(5, ',');
+    println!("{}", s);
+    s.insert_str(s.len(), " I like it");
+    println!("{}", s);
+
+    // 替换 (Replace)
+    let s: String = String::from("I  like rust. Learning rust is my favorite!");
+    let new_s: String = s.replace("rust", "Rust");
+    println!("{}", new_s);
+    // 2、replacen
+    let new_s: String = s.replacen("rust", "Rust", 1);
+    println!("{}", new_s);
+
+    // 3、replace_range
+    // 该方法是直接操作原来的字符串，不会返回新的字符串
+    let mut s: String = String::from("你I  like rust. Learning rust is my favorite!");
+    s.replace_range(0..3, "你好");
+    println!("{}", s);
+
+    // 删除 (Delete)
+    // 与字符串删除相关的方法有 4 个，它们分别是 pop()，remove()，truncate()，clear()。这四个方法仅适用于 String 类型
+
+    // 1、 pop —— 删除并返回字符串的最后一个字符
+    // 该方法是直接操作原来的字符串。但是存在返回值，其返回值是一个 Option 类型，如果字符串为空，则返回 None。
 }
 
 fn greet(name: String) {
