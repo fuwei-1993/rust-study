@@ -1,4 +1,5 @@
 use core::slice;
+use std::result;
 
 fn main() {
     let my_name = "fu_wei";
@@ -105,6 +106,91 @@ fn main() {
 
     // 1、 pop —— 删除并返回字符串的最后一个字符
     // 该方法是直接操作原来的字符串。但是存在返回值，其返回值是一个 Option 类型，如果字符串为空，则返回 None。
+    let mut s: String = String::from("rust pop 中文 1你好");
+    let string_pop: Option<char> = s.pop();
+    let string_pop: Option<char> = s.pop();
+    dbg!(string_pop);
+
+    // 2、 remove —— 删除并返回字符串中指定位置的字符
+    let mut remove_string: String = String::from("测试remove string");
+    let remove_char: char = remove_string.remove(0);
+    println!("{}", remove_string);
+    dbg!(remove_char);
+
+    // 3、truncate —— 删除字符串中从指定位置开始到结尾的全部字符
+    let mut truncate_string: String = String::from("测试truncate string");
+    truncate_string.truncate(3);
+    println!("{}", truncate_string);
+
+    // 4、clear —— 清空字符串
+    let mut clear_string: String = String::from("测试clear string");
+    clear_string.clear();
+    println!("clear: {}", clear_string);
+
+    //连接 (Concatenate)
+    let string_append = String::from("hello ");
+    let string_rust = String::from("rust");
+    // string_append 的所有权被转移走了，之后再不能使用它
+    let result = string_append + &string_rust;
+    let mut result = result + "!";
+    result += "!!!";
+    println!("{}", result);
+
+    // format! 这种方式适用于 String 和 &str
+    let s1: &str = "hello";
+    let s2: String = String::from("rust");
+    let s: String = format!("{} {}!", s1, s2);
+    println!("{}", s);
+
+    // 字符串转义
+    // 我们可以通过转义的方式 \ 输出 ASCII 和 Unicode 字符。
+    // 通过 \ + 字符的十六进制表示，转义输出一个字符
+    let byte_escape: &str = "I am writing \x52\x75\x73\x74!";
+    println!("What are you doing\x3F (\\x3F means ?) {}", byte_escape);
+
+    // \u 可以输出一个 unicode 字符
+    let unicode_code_point: &str = "\u{211D}";
+    let character_name: &str = "\"DOUBLE-STRUCK CAPITAL R\"";
+    println!(
+        "Unicode character {} (U+211D) is called {}",
+        unicode_code_point, character_name
+    );
+
+    // 换行了也会保持之前的字符串格式
+    // 使用\忽略换行符
+    let long_string: &str = "String literals
+                        can span multiple lines.
+                        The linebreak and indentation here ->\
+                        <- can be escaped too!";
+    println!("{}", long_string);
+
+    // 如果字符串包含双引号，可以在开头和结尾加 #
+    let quotes: &str = r#"A "double quoted" string"#;
+    println!("{}", quotes);
+    // 如果字符串中包含 # 号，可以在开头和结尾加多个 # 号，最多加255个，只需保证与字符串中连续 # 号的个数不超过开头和结尾的 # 号的个数即可
+    let longer_delimiter = r###"A string with "# in it. And even "##!"###;
+    println!("{}", longer_delimiter);
+
+    // 操作 UTF-8 字符串
+    // 字符
+    // 如果你想要以 Unicode 字符的方式遍历字符串，最好的办法是使用 chars 方法，例如：
+    for c in "中国人".chars() {
+        println!("{}", c);
+    }
+    // 字节
+    // 这种方式是返回字符串的底层字节数组表现形式：
+    for c in "中国人".bytes() {
+        println!("{}", c);
+    }
+
+    // 字符串深度剖析
+    // 那么问题来了，为啥 String 可变，而字符串字面值 str 却不可以？
+    {
+        let s = String::from("hello"); // 从此处起，s 是有效的
+
+        // 使用 s
+    } // 此作用域已结束，
+    // s 不再有效，内存被释放
 }
 
 fn greet(name: String) {
@@ -117,3 +203,7 @@ fn first_word(s: &String) -> &str {
 fn say_hello(s: &str) {
     println!("Hello, {}!", s);
 }
+
+// fn add(self, s: &str) -> String {
+//     self + s
+// }
