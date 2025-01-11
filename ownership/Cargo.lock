@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "ownership"
+name = "borrowing"
 version = "0.1.0"
